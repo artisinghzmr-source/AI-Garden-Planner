@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Garden Planner</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e8f5e9, #dcedc8);
+      color: #23452d;
+    }
+    header {
+      background: #245b36;
+      color: white;
+      text-align: center;
+      padding: 28px 15px;
+    }
+    header h1 { margin: 0 0 10px; }
+    main {
+      max-width: 650px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px #315b351a;
+    }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    select, button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 8px;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+    select { border: 1px solid #aac6ad; background: white; }
+    button {
+      background: #2f8045;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 22px;
+    }
+    button:hover { background: #205d31; }
+    #result {
+      margin-top: 20px;
+      padding: 16px;
+      background: #eff8ed;
+      border-radius: 12px;
+      line-height: 1.7;
+    }
+    footer { text-align: center; padding: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌱 AI Garden Planner</h1>
+    <p>Grow your dream garden, one plant at a time!</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Plan Your Garden 🌿</h2>
+      <p>Choose your garden conditions to get a personalized plant plan.</p>
+
+      <label for="space">Garden Space</label>
+      <select id="space">
+        <option value="balcony">Balcony</option>
+        <option value="small backyard">Small Backyard</option>
+        <option value="large garden">Large Garden</option>
+        <option value="indoor">Indoor Space</option>
+      </select>
+
+      <label for="sun">Sunlight</label>
+      <select id="sun">
+        <option value="full">Full Sunlight</option>
+        <option value="partial">Partial Sunlight</option>
+        <option value="shade">Mostly Shade</option>
+      </select>
+
+      <label for="goal">Garden Goal</label>
+      <select id="goal">
+        <option value="vegetables">Grow Vegetables</option>
+        <option value="flowers">Grow Flowers</option>
+        <option value="herbs">Grow Herbs</option>
+        <option value="low-maintenance">Low-Maintenance Garden</option>
+      </select>
+
+      <button onclick="makePlan()">✨ Generate My Garden Plan</button>
+      <div id="result" hidden aria-live="polite"></div>
+    </div>
+  </main>
+
+  <footer>🌍 Small gardens, greener planet.</footer>
+
+  <script>
+    function makePlan() {
+      const space = document.getElementById("space").value;
+      const sun = document.getElementById("sun").value;
+      const goal = document.getElementById("goal").value;
+
+      const plants = {
+        vegetables: sun === "full"
+          ? "Tomatoes, chillies and okra"
+          : "Mint, leafy greens and spinach",
+        flowers: sun === "full"
+          ? "Marigolds, zinnias and sunflowers"
+          : "Peace lilies, begonias and impatiens",
+        herbs: "Mint, coriander and basil",
+        "low-maintenance": "Snake plant, aloe vera and pothos"
+      };
+
+      const tips = {
+        full: "Place sun-loving plants where they get around 6 hours of direct sunlight.",
+        partial: "Choose plants that tolerate partial sunlight.",
+        shade: "Choose shade-tolerant plants and avoid overwatering."
+      };
+
+      const result = document.getElementById("result");
+      result.hidden = false;
+      result.innerHTML = `
+        <h3>🌼 Your Garden Plan</h3>
+        <p><strong>Garden space:</strong> ${space}</p>
+        <p><strong>Suggested plants:</strong> ${plants[goal]}</p>
+        <p><strong>Sunlight tip:</strong> ${tips[sun]}</p>
+        <p><strong>Care tip:</strong> Check soil moisture before watering and ensure pots have drainage holes.</p>
+        <p>Happy gardening! 🌱</p>
+      `;
+    }
+  </script>
+</body>
+  </html>
+          
